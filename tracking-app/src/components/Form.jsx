@@ -1,8 +1,7 @@
-
 import React, { useState } from "react";
 import uuid from "react-uuid";
 
-const Form = ({ todos, setTodos }) => {
+const Form = ({ todos, setTodos, state, setState }) => {
   const [inputText, setInputText] = useState("");
 
   const handleChange = (e) => {
@@ -22,6 +21,10 @@ const Form = ({ todos, setTodos }) => {
     setInputText("");
   };
 
+  const stateHandler = (e) => {
+    setState(e.target.value);
+  };
+
   return (
     <div className="title">
       <header>
@@ -38,7 +41,7 @@ const Form = ({ todos, setTodos }) => {
           <i className="fas fa-plus-square"></i>
         </button>
         <div className="select">
-          <select name="todos" className="filter-todo">
+          <select onChange={stateHandler} name="todos" className="filter-todo">
             <option value="all">All</option>
             <option value="completed">Completed</option>
             <option value="uncompleted">Uncompleted</option>
